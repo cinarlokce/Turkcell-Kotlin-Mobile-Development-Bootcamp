@@ -14,6 +14,7 @@ fun main(args: Array<String>) {
     println(arrayMinMax(intArrayOf(9,6,2,7,5,1,3,4,2)))
     println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
     println(findMax(1,7,4,1))
+    println(arrayComparison(intArrayOf(3,2,6,5), intArrayOf(1,2,3,4)))
 }
 
     // 1-)
@@ -107,6 +108,15 @@ fun findMax(a: Int, b: Int, c: Int, d: Int): Int{
 }
 
 // 11-)
-fun arrayComp(arr1: IntArray, arr2: IntArray) : Int{
-    arr1.d
+fun arrayComparison(arr1: IntArray, arr2: IntArray) : Int{
+    var sayac = 0
+    arr1.forEach {
+        if(arraySearch(arr2, it)){
+            sayac++
+        }
+    }
+    return sayac
 }
+
+// 12-)
+
