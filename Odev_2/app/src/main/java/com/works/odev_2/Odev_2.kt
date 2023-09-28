@@ -1,5 +1,6 @@
 package com.works.odev_2
 
+import kotlin.math.max
 import kotlin.math.sqrt
 
 fun main(args: Array<String>) {
@@ -9,6 +10,10 @@ fun main(args: Array<String>) {
     println(digitSum(123456789))
     println(bodyMassIndex(110.0,1.85))
     println(reverseInt(321))
+    println(isPalindrome(4321234))
+    println(arrayMinMax(intArrayOf(9,6,2,7,5,1,3,4,2)))
+    println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
+    println(findMax(1,7,4,1))
 }
 
     // 1-)
@@ -63,11 +68,45 @@ fun bodyMassIndex(kg: Double, boy: Double): Double {
 
 // 6-)
 fun reverseInt(a: Int): Int{
-    var temp = a.toString().reversed()
-    return temp.toInt()
+    return a.toString().reversed().toInt()
+
 }
 
 // 7-)
 fun isPalindrome(n: Int): Boolean {
-    
+    var nReversed = n.toString().reversed().toInt()
+    return n == nReversed
+}
+
+// 8-)
+fun arrayMinMax(arr: IntArray) :Int {
+    return arr.min()+arr.max()
+}
+
+// 9-)
+fun arraySearch(arr: IntArray, n: Int): Boolean{
+    arr.forEach {
+        if ( it == n ){
+            return true
+        }
+    }
+    return false
+}
+
+// 10-)
+fun findMax(a: Int, b: Int, c: Int, d: Int): Int{
+    var arr = intArrayOf(a,b,c,d)
+    var maks = 0
+
+    for (i in arr){
+        if (i> maks){
+            maks = i
+        }
+    }
+    return maks
+}
+
+// 11-)
+fun arrayComp(arr1: IntArray, arr2: IntArray) : Int{
+    arr1.d
 }
