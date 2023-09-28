@@ -1,7 +1,8 @@
 package com.works.odev_2
 
-import kotlin.math.max
-import kotlin.math.sqrt
+import java.lang.NullPointerException
+import java.lang.NumberFormatException
+
 
 fun main(args: Array<String>) {
     println(isPrime(9))
@@ -14,7 +15,8 @@ fun main(args: Array<String>) {
     println(arrayMinMax(intArrayOf(9,6,2,7,5,1,3,4,2)))
     println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
     println(findMax(1,7,4,1))
-    println(arrayComparison(intArrayOf(3,2,6,5), intArrayOf(1,2,3,4)))
+    println(arrayComparison(intArrayOf(3,6,4,5,2), intArrayOf(1,2,3)))
+    println(divideZero())
 }
 
     // 1-)
@@ -44,7 +46,7 @@ fun rangeSum(a: Int, b:Int) :Int{
 
 // 3-)
 fun oddEvenRemainder(n1: Int, n2: Int): Double {
-    var result: Double = if (n1 % 2 == 0){
+    val result: Double = if (n1 % 2 == 0){
         n1.toDouble()%n2
     }else{
         n1.toDouble()/n2
@@ -55,7 +57,7 @@ fun oddEvenRemainder(n1: Int, n2: Int): Double {
 // 4-)
 fun digitSum(a: Long): Int {
     var total = 0
-    var temp = a.toString()
+    val temp = a.toString()
     for ( i in temp ){
         total += i.digitToInt()
     }
@@ -75,7 +77,7 @@ fun reverseInt(a: Int): Int{
 
 // 7-)
 fun isPalindrome(n: Int): Boolean {
-    var nReversed = n.toString().reversed().toInt()
+    val nReversed = n.toString().reversed().toInt()
     return n == nReversed
 }
 
@@ -96,7 +98,7 @@ fun arraySearch(arr: IntArray, n: Int): Boolean{
 
 // 10-)
 fun findMax(a: Int, b: Int, c: Int, d: Int): Int{
-    var arr = intArrayOf(a,b,c,d)
+    val arr = intArrayOf(a,b,c,d)
     var maks = 0
 
     for (i in arr){
@@ -119,4 +121,20 @@ fun arrayComparison(arr1: IntArray, arr2: IntArray) : Int{
 }
 
 // 12-)
-
+fun divideZero() {
+    try {
+        println("Lütfen integer bir değer giriniz: ")
+        val a = readLine()?.toInt()
+        if (a != null) {
+            println(a / 0)
+        }
+    } catch (ex: NumberFormatException) {
+        println("Geçersiz değer girdiniz.")
+        divideZero()
+    } catch (ex: NullPointerException) {
+        println("Geçersiz değer girdiniz.Null")
+        divideZero()
+    } catch (ex: ArithmeticException) {
+        println("Sayı sıfıra bölünemez.")
+    }
+}
