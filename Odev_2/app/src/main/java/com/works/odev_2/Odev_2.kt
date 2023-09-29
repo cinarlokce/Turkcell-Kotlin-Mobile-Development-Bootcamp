@@ -20,11 +20,12 @@ fun main(args: Array<String>) {
     println(arrayComparison(intArrayOf(3,6,4,5,2), intArrayOf(1,2,3)))
     divideZero()
     valuePrint()
-    println(divide(3, 0))
+    println("Divide function 3/0 : ${divide(3, 0)}")
     average()
     stringComparison()
-    stringToInt()
+    println(stringToInt())
     multipler()
+    fourDigit()
 }
 
     // 1-)
@@ -226,5 +227,30 @@ fun multipler(){
     }catch (ex: InputMismatchException){
         println("Lütfen değerleri tamsayı giriniz.")
         multipler()
+    }
+}
+
+// 19-)
+fun fourDigit(){
+    try {
+        var sc = Scanner(System.`in`)
+        println("Lütfen dört basamaklı bir sayı giriniz.")
+        var n1 = sc.nextInt()
+        if ( n1.toString().length == 4 ){
+            if ( n1 % 2 == 0 ){
+                println("$n1 sayısının ikiye bölümü: ${n1/2}")
+            }else{
+                throw ArithmeticException("Sayı ikiye bölünemiyor.")
+            }
+        }else{
+            fourDigit()
+        }
+    }catch (ex: ArithmeticException){
+        println(ex.message)
+        fourDigit()
+    }catch (ex: InputMismatchException){
+        println("Geçersiz değer girdiniz lütfen tamsayı bir değer giriniz.")
+        println("")
+        fourDigit()
     }
 }
