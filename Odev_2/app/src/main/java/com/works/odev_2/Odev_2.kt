@@ -4,6 +4,7 @@ import java.lang.NullPointerException
 import java.lang.NumberFormatException
 import java.util.InputMismatchException
 import java.util.Scanner
+import kotlin.math.sqrt
 
 
 fun main(args: Array<String>) {
@@ -27,6 +28,8 @@ fun main(args: Array<String>) {
     multipler()
     fourDigit()
     oddEven()
+    listCreate()
+    isPerfect()
 }
 
     // 1-)
@@ -178,7 +181,7 @@ fun average() {
         var a = sc.nextInt()
         println("Lütfen ortalama hesaplaması için 2. sayıyı giriniz: ")
         var b = sc.nextInt()
-        println((a.toFloat()+b.toFloat())/2)
+        println("Girdiğiniz sayıların ortalaması: ${(a.toFloat()+b.toFloat())/2}")
     }catch (ex: InputMismatchException){
         println("Lütfen değerleri tamsayı giriniz.")
         average()
@@ -252,7 +255,6 @@ fun fourDigit(){
     }catch (ex: InputMismatchException){
         println("Geçersiz değer girdiniz lütfen tamsayı bir değer giriniz.")
         println("")
-        fourDigit()
     }
 }
 
@@ -289,5 +291,77 @@ fun oddEven(){
     }catch (ex: IndexOutOfBoundsException){
         println(ex.message)
         oddEven()
+    }
+}
+
+// 21-)
+fun listCreate(){
+    var sc = Scanner(System.`in`)
+    var liste = mutableListOf<Int>()
+    try {
+        println("Lütfen oluşturmak istediğiniz listenin boyutunu giriniz")
+        var elemanSayisi = sc.nextInt()
+        for (i in 0..elemanSayisi){
+            println("Lütfen ${i+1}. elemanı giriniz: ")
+            var eleman = sc.nextInt()
+            liste.add(eleman)
+        }
+        var listeCiftIndex = liste.filter { liste.indexOf(it)%2 == 0 }
+        var listeTekIndex = liste.filter { liste.indexOf(it)%2 != 0 }
+
+        println("""
+            Girdiğiniz listedeki;
+            Çift indexli elemanların toplamı: ${listeCiftIndex.sum()}
+            Tek indexli elemanların toplamı: ${listeTekIndex.sum()}
+        """.trimIndent())
+    }catch (ex: InputMismatchException){
+        println("Boyutu veya elemanları geçersiz girdiniz.Lütfen tamsayı değerler giriniz.")
+        listCreate()
+    }
+}
+
+// 22-)
+fun isPerfect(){
+    val sc = Scanner(System.`in`)
+    var posDivider = mutableListOf<Int>()
+    try {
+        print("Mükemmel sayı olup olmadığını kontrol etmek istediğiniz sayıyı giriniz: ")
+        val sayi = sc.nextInt()
+        for (i in 1 until sayi){
+            if ( sayi%i == 0 ){
+                posDivider.add(i)
+            }else{
+                continue
+            }
+        }
+        if ( sayi == posDivider.sum() ){
+            println("$sayi sayısı mükemmel sayıdır.")
+        }else{
+            println("$sayi sayısı mükemmel sayı değildir.")
+        }
+    }catch (ex: InputMismatchException){
+        println("Geçersiz değer girdiniz lütfen tamsayı değer giriniz.")
+        isPerfect()
+    }
+}
+
+// 23-)
+fun squareRoot(){
+    var sc = Scanner(System.`in`)
+    try {
+        print("Karekökünü almak istediğiniz sayıyı girin: ")
+        var n = sc.nextInt()
+        if ( n<0 ){
+            throw ArithmeticException("Sayı negatif olamaz!")
+        }else{
+            println("$n sayısının karekökü ${sqrt(n.toFloat())}")
+        }
+
+    }catch (ex: InputMismatchException){
+        println("Lütfen tamsayı değer giriniz.")
+        squareRoot()
+    }catch (ex: ArithmeticException){
+        println(ex.message)
+        squareRoot()
     }
 }
