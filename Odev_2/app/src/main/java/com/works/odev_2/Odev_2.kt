@@ -2,6 +2,8 @@ package com.works.odev_2
 
 import java.lang.NullPointerException
 import java.lang.NumberFormatException
+import java.util.InputMismatchException
+import java.util.Scanner
 
 
 fun main(args: Array<String>) {
@@ -16,7 +18,13 @@ fun main(args: Array<String>) {
     println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
     println(findMax(1,7,4,1))
     println(arrayComparison(intArrayOf(3,6,4,5,2), intArrayOf(1,2,3)))
-    println(divideZero())
+    divideZero()
+    valuePrint()
+    println(divide(3, 0))
+    average()
+    stringComparison()
+    stringToInt()
+    multipler()
 }
 
     // 1-)
@@ -136,5 +144,87 @@ fun divideZero() {
         divideZero()
     } catch (ex: ArithmeticException) {
         println("Sayı sıfıra bölünemez.")
+    }
+}
+
+// 13-)
+fun valuePrint(){
+    var sc = Scanner(System.`in`)
+    try {
+        println("Lütfen bir tamsayı giriniz: ")
+        var a = sc.nextInt()
+        println("Girdiğiniz sayı $a")
+    }catch (ex: InputMismatchException){
+        valuePrint()
+    }
+}
+
+// 14-)
+fun divide(a: Int, b: Int): Any {
+    try {
+        return a/b
+    }catch (ex: ArithmeticException){
+        return "Bölme işlemi sıfıra bölünemez."
+    }
+}
+
+// 15-)
+fun average() {
+    var sc = Scanner(System.`in`)
+    try {
+        println("Lütfen ortalama hesaplaması için 1. sayıyı giriniz: ")
+        var a = sc.nextInt()
+        println("Lütfen ortalama hesaplaması için 2. sayıyı giriniz: ")
+        var b = sc.nextInt()
+        println((a.toFloat()+b.toFloat())/2)
+    }catch (ex: InputMismatchException){
+        println("Lütfen değerleri tamsayı giriniz.")
+        average()
+    }
+}
+
+// 16-)
+fun stringComparison(){
+    var sc = Scanner(System.`in`)
+    try {
+        println("1. String ifadeyi giriniz.")
+        var a = readLine()
+        println("2. String ifadeyi giriniz.")
+        var b = readLine()
+        if (a?.length != b?.length) println("Karakter sayıları uyuşmuyor.")
+    }catch (ex: InputMismatchException){
+        println("Lütfen String ifade giriniz")
+    }
+}
+
+// 17-)
+fun stringToInt(): Int?{
+    try {
+        println("Lütfen bir tamsayı giriniz.")
+        var a = readLine()
+        var aInt = a?.toInt()
+        return aInt
+    }catch (ex: NullPointerException){
+        println("Geçerli bir değer giriniz.")
+        stringToInt()
+    }catch (ex: NumberFormatException){
+        println("Geçerli bir değer giriniz.")
+        stringToInt()
+    }
+    return 0
+}
+
+// 18-)
+fun multipler(){
+    var sc = Scanner(System.`in`)
+    try {
+        println("Çarpılacak 1. sayıyı giriniz: ")
+        var a = sc.nextInt()
+        println("Çarpılacak 2. sayıyı giriniz: ")
+        var b = sc.nextInt()
+        println("Girdiğiniz iki sayının çarpımı: ${a*b}")
+    }catch (ex: InputMismatchException){
+        println("Lütfen değerleri tamsayı giriniz.")
+        multipler()
     }
 }
