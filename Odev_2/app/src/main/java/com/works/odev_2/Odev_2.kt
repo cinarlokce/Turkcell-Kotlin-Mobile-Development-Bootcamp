@@ -26,6 +26,7 @@ fun main(args: Array<String>) {
     println(stringToInt())
     multipler()
     fourDigit()
+    oddEven()
 }
 
     // 1-)
@@ -252,5 +253,41 @@ fun fourDigit(){
         println("Geçersiz değer girdiniz lütfen tamsayı bir değer giriniz.")
         println("")
         fourDigit()
+    }
+}
+
+// 20-)
+fun oddEven(){
+    var arr = mutableListOf<Int>()
+    var sc = Scanner(System.`in`)
+    try {
+        println("0 ile 20 arasında 5 adet tamsayı giriniz.")
+        for (i in 1..5) {
+            println("$i. sayı: ")
+            var sayi = sc.nextInt()
+            if ( sayi>20 && sayi<0){
+                throw IndexOutOfBoundsException("Lütfen 0 ile 20 arasında bir değer giriniz.")
+            }
+            arr.add(sayi)
+        }
+        var evenArr = arr.filter { it % 2 == 0 }
+        var oddArr = arr.filter { it % 2 != 0 }
+        var evenCount = arr.count { it % 2 == 0 }
+        var oddCount = arr.count { it % 2 != 0 }
+
+        var evenAvg = evenArr.sum()/evenCount
+        var oddAvg = oddArr.sum()/oddCount
+
+        println("""
+            Girdiğiniz tek sayıların ortalaması: $oddAvg
+            Girdiğiniz çift sayıların ortalaması: $evenAvg
+        """.trimIndent())
+
+    }catch (ex: InputMismatchException){
+        println("Geçersiz değer girdiniz.Lütfen tamsayı değer giriniz.")
+        oddEven()
+    }catch (ex: IndexOutOfBoundsException){
+        println(ex.message)
+        oddEven()
     }
 }
