@@ -1,35 +1,40 @@
 package com.works.odev_2
 
+import androidx.core.text.isDigitsOnly
 import java.lang.NullPointerException
 import java.lang.NumberFormatException
 import java.util.InputMismatchException
 import java.util.Scanner
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 
 fun main(args: Array<String>) {
-    println(isPrime(9))
-    println(rangeSum(3,6))
-    println(oddEvenRemainder(5,4))
-    println(digitSum(123456789))
-    println(bodyMassIndex(110.0,1.85))
-    println(reverseInt(321))
-    println(isPalindrome(4321234))
-    println(arrayMinMax(intArrayOf(9,6,2,7,5,1,3,4,2)))
-    println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
-    println(findMax(1,7,4,1))
-    println(arrayComparison(intArrayOf(3,6,4,5,2), intArrayOf(1,2,3)))
-    divideZero()
-    valuePrint()
-    println("Divide function 3/0 : ${divide(3, 0)}")
-    average()
-    stringComparison()
-    println(stringToInt())
-    multipler()
-    fourDigit()
-    oddEven()
-    listCreate()
-    isPerfect()
+//    println(isPrime(11))
+//    println(rangeSum(3,7))
+//    println(oddEvenRemainder(5,4))
+//    println(digitSum(123456789))
+//    println(bodyMassIndex(110.0,1.85))
+//    println(reverseInt(321))
+//    println(isPalindrome(4321234))
+//    println(arrayMinMax(intArrayOf(9,6,2,7,5,1,3,4,2)))
+//    println(arraySearch(intArrayOf(3,4,2,1,5,7), 9))
+//    println(findMax(1,7,4,1))
+//    println(arrayComparison(intArrayOf(3,6,4,5,2), intArrayOf(1,2,3)))
+//    divideZero()
+//    valuePrint()
+//    println("Divide function 3/0 : ${divide(3, 0)}")
+//    average()
+//    stringComparison()
+//    println(stringToInt())
+//    multipler()
+//    fourDigit()
+//    oddEven()
+//   listCreate()
+//    isPerfect()
+//    squareRoot()
+//    isArmstrong()
+//    factorial()
 }
 
     // 1-)
@@ -42,6 +47,7 @@ fun isPrime(n: Int) : Boolean {
     for (i in 2 until n){
         if (n % i == 0){
             result = false
+            break
         }
     }
     return result
@@ -51,9 +57,14 @@ fun isPrime(n: Int) : Boolean {
 
 fun rangeSum(a: Int, b:Int) :Int{
     var total = 0
-    for (i in (a+1)..b){
-        total += i
+    if ( a>=b ){
+        println("Lütfen ikinci sayıyı birinci sayıdan büyük giriniz.")
+    }else{
+        for (i in (a+1)..b){
+            total += i
+        }
     }
+
     return total
 }
 
@@ -154,10 +165,10 @@ fun divideZero() {
 
 // 13-)
 fun valuePrint(){
-    var sc = Scanner(System.`in`)
+    val sc = Scanner(System.`in`)
     try {
         println("Lütfen bir tamsayı giriniz: ")
-        var a = sc.nextInt()
+        val a = sc.nextInt()
         println("Girdiğiniz sayı $a")
     }catch (ex: InputMismatchException){
         valuePrint()
@@ -175,12 +186,12 @@ fun divide(a: Int, b: Int): Any {
 
 // 15-)
 fun average() {
-    var sc = Scanner(System.`in`)
+    val sc = Scanner(System.`in`)
     try {
         println("Lütfen ortalama hesaplaması için 1. sayıyı giriniz: ")
-        var a = sc.nextInt()
+        val a = sc.nextInt()
         println("Lütfen ortalama hesaplaması için 2. sayıyı giriniz: ")
-        var b = sc.nextInt()
+        val b = sc.nextInt()
         println("Girdiğiniz sayıların ortalaması: ${(a.toFloat()+b.toFloat())/2}")
     }catch (ex: InputMismatchException){
         println("Lütfen değerleri tamsayı giriniz.")
@@ -193,9 +204,9 @@ fun stringComparison(){
     var sc = Scanner(System.`in`)
     try {
         println("1. String ifadeyi giriniz.")
-        var a = readLine()
+        val a = readLine()
         println("2. String ifadeyi giriniz.")
-        var b = readLine()
+        val b = readLine()
         if (a?.length != b?.length) println("Karakter sayıları uyuşmuyor.")
     }catch (ex: InputMismatchException){
         println("Lütfen String ifade giriniz")
@@ -203,30 +214,27 @@ fun stringComparison(){
 }
 
 // 17-)
-fun stringToInt(): Int?{
+fun stringToInt(): Any{
+    val sc = Scanner(System.`in`)
+    var result = 0
+    println("Lütfen bir tamsayı giriniz: ")
+    val a = sc.nextLine()
     try {
-        println("Lütfen bir tamsayı giriniz.")
-        var a = readLine()
-        var aInt = a?.toInt()
-        return aInt
-    }catch (ex: NullPointerException){
-        println("Geçerli bir değer giriniz.")
-        stringToInt()
-    }catch (ex: NumberFormatException){
-        println("Geçerli bir değer giriniz.")
+        result = a.toInt()
+    }catch (ex: Exception){
         stringToInt()
     }
-    return 0
+    return result
 }
 
 // 18-)
 fun multipler(){
-    var sc = Scanner(System.`in`)
+    val sc = Scanner(System.`in`)
     try {
         println("Çarpılacak 1. sayıyı giriniz: ")
-        var a = sc.nextInt()
+        val a = sc.nextInt()
         println("Çarpılacak 2. sayıyı giriniz: ")
-        var b = sc.nextInt()
+        val b = sc.nextInt()
         println("Girdiğiniz iki sayının çarpımı: ${a*b}")
     }catch (ex: InputMismatchException){
         println("Lütfen değerleri tamsayı giriniz.")
@@ -237,9 +245,9 @@ fun multipler(){
 // 19-)
 fun fourDigit(){
     try {
-        var sc = Scanner(System.`in`)
+        val sc = Scanner(System.`in`)
         println("Lütfen dört basamaklı bir sayı giriniz.")
-        var n1 = sc.nextInt()
+        val n1 = sc.nextInt()
         if ( n1.toString().length == 4 ){
             if ( n1 % 2 == 0 ){
                 println("$n1 sayısının ikiye bölümü: ${n1/2}")
@@ -251,7 +259,6 @@ fun fourDigit(){
         }
     }catch (ex: ArithmeticException){
         println(ex.message)
-        fourDigit()
     }catch (ex: InputMismatchException){
         println("Geçersiz değer girdiniz lütfen tamsayı bir değer giriniz.")
         println("")
@@ -260,25 +267,25 @@ fun fourDigit(){
 
 // 20-)
 fun oddEven(){
-    var arr = mutableListOf<Int>()
-    var sc = Scanner(System.`in`)
+    val arr = mutableListOf<Int>()
+    val sc = Scanner(System.`in`)
     try {
         println("0 ile 20 arasında 5 adet tamsayı giriniz.")
         for (i in 1..5) {
             println("$i. sayı: ")
-            var sayi = sc.nextInt()
-            if ( sayi>20 && sayi<0){
+            val sayi = sc.nextInt()
+            if ( sayi>20 || sayi<0){
                 throw IndexOutOfBoundsException("Lütfen 0 ile 20 arasında bir değer giriniz.")
             }
             arr.add(sayi)
         }
-        var evenArr = arr.filter { it % 2 == 0 }
-        var oddArr = arr.filter { it % 2 != 0 }
-        var evenCount = arr.count { it % 2 == 0 }
-        var oddCount = arr.count { it % 2 != 0 }
+        val evenArr = arr.filter { it % 2 == 0 }
+        val oddArr = arr.filter { it % 2 != 0 }
+        val evenCount = arr.count { it % 2 == 0 }
+        val oddCount = arr.count { it % 2 != 0 }
 
-        var evenAvg = evenArr.sum()/evenCount
-        var oddAvg = oddArr.sum()/oddCount
+        val evenAvg = evenArr.sum()/evenCount
+        val oddAvg = oddArr.sum()/oddCount
 
         println("""
             Girdiğiniz tek sayıların ortalaması: $oddAvg
@@ -296,18 +303,18 @@ fun oddEven(){
 
 // 21-)
 fun listCreate(){
-    var sc = Scanner(System.`in`)
-    var liste = mutableListOf<Int>()
+    val sc = Scanner(System.`in`)
+    val liste = mutableListOf<Int>()
     try {
         println("Lütfen oluşturmak istediğiniz listenin boyutunu giriniz")
         var elemanSayisi = sc.nextInt()
-        for (i in 0..elemanSayisi){
-            println("Lütfen ${i+1}. elemanı giriniz: ")
+        for (i in 1..elemanSayisi){
+            println("Lütfen $i. elemanı giriniz: ")
             var eleman = sc.nextInt()
             liste.add(eleman)
         }
-        var listeCiftIndex = liste.filter { liste.indexOf(it)%2 == 0 }
-        var listeTekIndex = liste.filter { liste.indexOf(it)%2 != 0 }
+        val listeCiftIndex = liste.filter { liste.indexOf(it)%2 == 0 }
+        val listeTekIndex = liste.filter { liste.indexOf(it)%2 != 0 }
 
         println("""
             Girdiğiniz listedeki;
@@ -323,7 +330,7 @@ fun listCreate(){
 // 22-)
 fun isPerfect(){
     val sc = Scanner(System.`in`)
-    var posDivider = mutableListOf<Int>()
+    val posDivider = mutableListOf<Int>()
     try {
         print("Mükemmel sayı olup olmadığını kontrol etmek istediğiniz sayıyı giriniz: ")
         val sayi = sc.nextInt()
@@ -347,10 +354,10 @@ fun isPerfect(){
 
 // 23-)
 fun squareRoot(){
-    var sc = Scanner(System.`in`)
+    val sc = Scanner(System.`in`)
     try {
         print("Karekökünü almak istediğiniz sayıyı girin: ")
-        var n = sc.nextInt()
+        val n = sc.nextInt()
         if ( n<0 ){
             throw ArithmeticException("Sayı negatif olamaz!")
         }else{
@@ -365,3 +372,72 @@ fun squareRoot(){
         squareRoot()
     }
 }
+
+// 24-)
+fun isArmstrong(){
+    val sc = Scanner(System.`in`)
+    var n1Total = 0.0
+    var n2Total = 0.0
+    try {
+        println("Armstrong sayısı olup olmadığını kontrol etmek istediğiniz 1. sayıyı giriniz: ")
+        var n1 = sc.nextInt()
+        println("Armstrong sayısı olup olmadığını kontrol etmek istediğiniz 2. sayıyı giriniz: ")
+        var n2 = sc.nextInt()
+
+        val n1String = n1.toString()
+        val n2String = n2.toString()
+
+
+        val n1Length = n1.toString().length
+        val n2Length = n2.toString().length
+
+        if (n1Length == 3 && n2Length == 3) {
+            for (i in n1String) {
+                n1Total += i.digitToInt().toDouble().pow(n1Length)
+            }
+            if (n1 == n1Total.toInt()) {
+                println("$n1 sayısı armstrong sayısıdır.")
+            } else {
+                println("$n1 sayısı armstrong sayısı değildir.")
+            }
+                for (i in n2String) {
+                    n2Total += i.digitToInt().toDouble().pow(n2Length)
+
+                }
+            if (n2 == n2Total.toInt()) {
+                println("$n2 sayısı armstrong sayısıdır.")
+            } else {
+                println("$n2 sayısı armstrong sayısı değildir.")
+            }
+        }else{
+            println("Lütfen üç basamaklı bir sayı giriniz!")
+            isArmstrong()
+        }
+    }catch (ex: InputMismatchException){
+        println("Lütfen tamsayı bir değer giriniz")
+        isArmstrong()
+    }
+}
+
+// 25-)
+fun factorial(){
+    val sc = Scanner(System.`in`)
+    println("Lütfen pozitif bir tamsayı giriniz: ")
+    var faktoriyel = 1
+    try {
+        var sayi = sc.nextInt()
+        if ( sayi >= 0 ){
+            for (i in 1..sayi){
+                faktoriyel *= i
+            }
+            println("$sayi sayısının faktoriyeli: $faktoriyel")
+        }else{
+            throw ArithmeticException("Lütfen sıfırdan büyük bir tamsayı giriniz!")
+        }
+    }catch (ex: ArithmeticException){
+        println(ex.message)
+    }catch (ex: InputMismatchException){
+        factorial()
+    }
+}
+
