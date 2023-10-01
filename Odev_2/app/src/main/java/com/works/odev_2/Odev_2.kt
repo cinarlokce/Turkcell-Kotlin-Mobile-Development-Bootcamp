@@ -1,6 +1,5 @@
 package com.works.odev_2
 
-import androidx.core.text.isDigitsOnly
 import java.lang.NullPointerException
 import java.lang.NumberFormatException
 import java.util.InputMismatchException
@@ -30,14 +29,18 @@ fun main(args: Array<String>) {
 //    multipler()
 //    fourDigit()
 //    oddEven()
-//   listCreate()
+//    listCreate()
 //    isPerfect()
 //    squareRoot()
 //    isArmstrong()
 //    factorial()
+//    driverLicense()
+//    rangeOneFifty()
+//    lysCheck()
+//    quiz()
 }
 
-    // 1-)
+// 1-)
 
 fun isPrime(n: Int) : Boolean {
     var result = true
@@ -361,7 +364,7 @@ fun squareRoot(){
         if ( n<0 ){
             throw ArithmeticException("Sayı negatif olamaz!")
         }else{
-            println("$n sayısının karekökü ${sqrt(n.toFloat())}")
+            println("$n sayısının karekökü ${sqrt(n.toDouble())}")
         }
 
     }catch (ex: InputMismatchException){
@@ -438,6 +441,94 @@ fun factorial(){
         println(ex.message)
     }catch (ex: InputMismatchException){
         factorial()
+    }
+}
+
+// 26-)
+fun driverLicense(){
+    val sc = Scanner(System.`in`)
+    val ehliyetYasi = 18
+    try {
+        println("Lütfen yaşınızı giriniz: ")
+        val yas = sc.nextInt()
+        if (yas >= 0){
+            if (yas < ehliyetYasi){
+                println("Maalesef ehliyet alacak yaşta değilsiniz,${ehliyetYasi-yas} yıl sonra ehliyet almaya hak kazanabilirsiniz!")
+            }
+            else{
+                println("Tebrikler ehliyet alma hakkınız var.")
+            }
+        }
+
+        else{
+            throw ArithmeticException("Lütfen pozitif tamsayı giriniz!")
+        }
+
+    }catch (ex: InputMismatchException){
+        println("Lütfen pozitif tamsayı giriniz!")
+    }catch (ex: ArithmeticException){
+        println(ex.message)
+    }
+}
+
+// 27-)
+fun rangeOneFifty(){
+    val sc = Scanner(System.`in`)
+    try {
+        print("Lütfen 1 ile 50 arasında bir tamsayı giriniz: ")
+        val sayi = sc.nextInt()
+        if (sayi>=0 && sayi<=50){
+            println("Girdiğiniz tamsayı 1 ile 50 arasında.")
+        }else{
+            throw InputMismatchException("Lütfen 1 ile 50 arasında tamsayı bir değer giriniz!")
+        }
+    }catch (ex: InputMismatchException){
+        println("Lütfen 1 ile 50 arasında tamsayı bir değer giriniz!")
+    }
+}
+
+// 28-)
+fun lysCheck() {
+
+    try {
+        val sc = Scanner(System.`in`)
+        print("Lys puanınızı giriniz: ")
+        var puan = readlnOrNull()
+        val puanInt = puan?.toInt()
+
+        if (puanInt!! > 0 && puanInt < 500) {
+            if (puanInt!! in 400..430) {
+                println("Mühendislik Fakültesi’ne yerleşebilirsiniz")
+            } else {
+                println("Üzülme, Vazgeçme ! \uD83D\uDE0A")
+            }
+        } else {
+            throw InputMismatchException("Lütfen 0 ile 500 arasında geçerli bir puan giriniz!")
+        }
+    }catch (ex: InputMismatchException){
+        println(ex.message)
+    }catch (ex: NumberFormatException){
+        println("Lütfen geçerli bir sayı giriniz!")
+    }catch (ex: NullPointerException){
+        println("Lütfen geçerli bir sayı giriniz")
+    }
+}
+
+// 29-)
+fun quiz(){
+    var sc = Scanner(System.`in`)
+    val dogruCevap = 4
+    try {
+        println("2+2 işleminin sonucu kaçtır?")
+        val cevap = sc.nextInt()
+        if (cevap == dogruCevap){
+            println("Tebrikler! Doğru cevap verdiniz")
+        }
+        else{
+            println("Cevabınız yanlış.Doğru cevap $dogruCevap.")
+        }
+    }catch (ex: InputMismatchException){
+        println("Lütfen geçerli bir cevap giriniz.")
     }
 }
 
