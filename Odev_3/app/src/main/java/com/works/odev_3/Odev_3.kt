@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
     println(info)
     */
 
-
+    // fileSearch("C:/Users/HP/Desktop/","lorem")
 
 
 }
@@ -216,3 +216,24 @@ fun fileSize(dirPath: String): Float{
 }
 
 // 9-)
+fun fileSearch(path: String, word: String): Int{
+    val folder = File(path)
+    val pathFiles = folder.listFiles()
+    var totalSize = 0.0
+    var findCount = 0
+
+        for (file in pathFiles){
+            if (file.isDirectory){
+                findCount += fileSearch(file.path,word)
+            }else if (file.isFile){
+                val context = file.readText()
+                if (context.contains(word)){
+                    findCount++
+                    totalSize += file.length()
+                    val wordCount = context.split(" ").filter { it.contains(word,true) }.count()
+                    println("Aradığınız kelime ${file.name} dosyasında ${wordCount} kere geçmektedir ve ${file.name} dosyası ${file.parent} klasöründe bulunmuştur.Bulunan dosyanın boyutu ${file.length()/1000000} megabyte")
+                }
+            }
+        }
+    return findCount
+}
