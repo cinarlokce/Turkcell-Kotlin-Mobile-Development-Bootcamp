@@ -217,11 +217,12 @@ fun fileSize(dirPath: String): Float{
 
 // 9-)
 fun fileSearch(path: String, word: String): Int{
-    val folder = File(path)
-    val pathFiles = folder.listFiles()
     var totalSize = 0.0
     var findCount = 0
 
+    try {
+        val folder = File(path)
+        val pathFiles = folder.listFiles()
         for (file in pathFiles){
             if (file.isDirectory){
                 findCount += fileSearch(file.path,word)
@@ -235,5 +236,10 @@ fun fileSearch(path: String, word: String): Int{
                 }
             }
         }
+    }catch (ex: Exception){
+        println("Girdiğiniz dosya yolu geçersiz.")
+    }
+
+
     return findCount
 }
