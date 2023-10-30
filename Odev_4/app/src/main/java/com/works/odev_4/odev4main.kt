@@ -6,7 +6,9 @@ fun main(args: Array<String>) {
     println("=================SORU 2===================")
     Odev4().soru2()
     println("=================SORU 3===================")
-    //---------------------
+
+    Kisi("","","").menu()
+
     println("=================SORU 4===================")
     Odev4().soru4()
     println("=================SORU 5===================")
@@ -46,5 +48,8 @@ fun main(args: Array<String>) {
 
     println("=================SORU 12===================")
 
-    val set1 = 
+    val set1 =  setOf<Int>(1,2,3,4,5,6,7,8,9,0)
+    val set2 = setOf<Int>(6,7,8,9,10,11,12,13,0)
+
+    Odev4().soru12(set1, set2)
 }

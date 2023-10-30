@@ -17,9 +17,7 @@ open class Odev4 {
         println("$a + $b = ${aInt+bInt}")
     }
 
-    open fun soru3(){
 
-    }
 
     open fun soru4(){
         val isimListe = listOf<String>("Ahmet","Ali","Veli","Ayşe","Fatma")
@@ -74,5 +72,19 @@ open class Odev4 {
 
     open fun soru11(sayiListe: List<Int>): List<Int> {
         return sayiListe.sorted()
+    }
+
+    open fun soru12(set1: Set<Int>, set2: Set<Int>){
+        val ortakElemanlar = mutableListOf<Int>()
+
+        for (i in set1){
+            for (j in set2){
+                if (i == j){
+                    ortakElemanlar.add(i)
+                }
+            }
+        }
+        print("Ortak Elemanlar: ")
+        ortakElemanlar.forEach { print("$it ") }
     }
 }
