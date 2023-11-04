@@ -1,5 +1,5 @@
 package com.works.odev_5
 
-open class Dog: Mammal() {
+open class Cow: Mammal() {
 
 }

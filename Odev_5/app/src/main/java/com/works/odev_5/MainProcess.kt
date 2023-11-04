@@ -5,11 +5,30 @@ fun main(args: Array<String>) {
     UseInheritenceClass().explaination()
     println("==============Inheritence b şıkkı==============")
 
-    if(Dog().giveBirthSkill){
-        println("Köpekler doğurabilir.")
+    if(Cow().giveBirthSkill){
+        println("İnekler doğurabilir.")
     }
-    if (Dog().breastFeedingSkill){
-        println("Köpekler yavrularını sütle besleyebilir.")
+    if (Cow().breastFeedingSkill){
+        println("İnekler yavrularını sütle besleyebilir.")
     }
 
+    println("==============Abstract Class a şıkkı==============")
+
+    SoyutSinif().explaination()
+    val yeniKare = Kare(4.0)
+    yeniKare.calculateArea()
+    yeniKare.display()
+
+    println("==============Polymorphism a şıkkı==============")
+    ExplainPolymorphism().explaination()
+
+    println("==============Polymorphism b şıkkı==============")
+    acikla(UseInheritenceClass())
+    acikla(SoyutSinif())
+    acikla(ExplainPolymorphism())
+
+}
+
+fun acikla(aciklama: Aciklama) {
+    aciklama.explaination()
 }
