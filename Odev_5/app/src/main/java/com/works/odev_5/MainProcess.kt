@@ -27,6 +27,11 @@ fun main(args: Array<String>) {
     acikla(SoyutSinif())
     acikla(ExplainPolymorphism())
 
+    println("==============Interface a şıkkı==============")
+    ExplainInterface().explaination()
+
+    println("==============Interface b şıkkı==============")
+    ExplainInterface().explainationb()
 }
 
 fun acikla(aciklama: Aciklama) {
