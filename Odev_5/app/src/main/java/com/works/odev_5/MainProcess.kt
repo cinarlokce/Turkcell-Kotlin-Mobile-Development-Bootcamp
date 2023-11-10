@@ -32,6 +32,20 @@ fun main(args: Array<String>) {
 
     println("==============Interface b şıkkı==============")
     ExplainInterface().explainationb()
+
+    println("==============Inheritence ve Polymorphism==============")
+
+    val hayvanDizisi = mutableListOf<Hayvan>()
+    val yeniKedi = Kedi()
+    val yeniKopek = Kopek()
+    hayvanDizisi.add(yeniKedi)
+    hayvanDizisi.add(yeniKopek)
+    hayvanDizisi.forEach { it.sesCikar() }
+
+    println("==============Abstract ve Interface kullanımı==============")
+
+    AbstractAndInterface().callInterface()
+    AbstractAndInterface().abstractCall()
 }
 
 fun acikla(aciklama: Aciklama) {
