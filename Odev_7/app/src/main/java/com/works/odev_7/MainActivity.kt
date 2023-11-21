@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
+import com.works.odev_7.adapter.CustomAdapter
 import com.works.odev_7.databinding.ActivityMainBinding
 import com.works.odev_7.model.Weather
 import com.works.odev_7.service.WeatherService
@@ -25,7 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         var array: List<Weather> = WeatherService().xml()
 
+        val adapter = CustomAdapter(this,array)
 
+        binding.lstWeather.adapter = adapter
 
     }
 }

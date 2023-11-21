@@ -1,51 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
 
-    <TextView
-        android:id="@+id/bolge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/peryot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zaman Dilimi"/>
 
-    <TextView
-        android:id="@+id/il"
+
+
+
+    >
+
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="İl"
-        android:paddingLeft="10dp"/>
+        app:cardBackgroundColor="#BD2020"
 
-    <TextView
-        android:id="@+id/durum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Durum"
-        android:paddingLeft="10dp"/>
-
-    <TextView
-        android:id="@+id/minSicaklik"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="minSicaklik"
-        android:paddingLeft="10dp"/>
-
-    <TextView
-        android:id="@+id/maxSicaklik"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="maxSicaklik"
-        android:paddingLeft="10dp"/>
-
-    />
+        <TextView
+            android:id="@+id/text_bolge"
+            android:text="Bolge"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
 
 
-
+            />
 </LinearLayout>
