@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.core.view.forEach
 
@@ -17,9 +18,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val eczaneList = findViewById<ListView>(R.id.lstEczane)
 
+        val btnA = findViewById<Button>(R.id.btnA)
+
+        btnA.setOnClickListener {
+            operation()
+        }
+
+    }
+
+    fun operation (){
         try {
+            val eczaneList = findViewById<ListView>(R.id.lstEczane)
             val arr = EczaneResult().gaziAntep()
             var ilceListe = mutableListOf<String>()
             var eczListe = mutableListOf<String>()
@@ -49,6 +59,5 @@ class MainActivity : AppCompatActivity() {
         }catch (ex: Exception){
             ex.printStackTrace()
         }
-
     }
 }
