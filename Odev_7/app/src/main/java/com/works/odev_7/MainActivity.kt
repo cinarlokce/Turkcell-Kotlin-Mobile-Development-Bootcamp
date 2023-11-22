@@ -1,22 +1,20 @@
 package com.works.odev_7
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
-import androidx.lifecycle.lifecycleScope
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.works.odev_7.adapter.CustomAdapter
 import com.works.odev_7.databinding.ActivityMainBinding
 import com.works.odev_7.model.Weather
 import com.works.odev_7.service.WeatherService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var array: List<Weather> = WeatherService().xml()
+    var array2: List<Weather> = WeatherService().xml()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +22,39 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        var array: List<Weather> = WeatherService().xml()
+        fun refreshFun(isNew: Boolean){
+            if (isNew){
+                var adapter = CustomAdapter(this, array2)
+                binding.lstWeather.adapter = adapter
+            }else{
+                var adapter = CustomAdapter(this, array)
+                binding.lstWeather.adapter = adapter
+            }
+        }
 
-        val adapter = CustomAdapter(this,array)
+        refreshFun(false)
 
-        binding.lstWeather.adapter = adapter
+        binding.srcText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if (newText != null && newText!=""){
+                    array = array.filter {
+                        it.il.contains(newText, true)
+                    }
+                    refreshFun(false)
+                }else{
+                    refreshFun(true)
+                }
+                array = array2
+                return false
+            }
+
+        })
     }
 }
