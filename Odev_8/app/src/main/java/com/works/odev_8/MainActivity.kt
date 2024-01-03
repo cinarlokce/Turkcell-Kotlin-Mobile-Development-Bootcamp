@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userPassword: String
     private lateinit var userName: String
     private lateinit var loginStatus: String
-    private lateinit var products: Products
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
